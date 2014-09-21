@@ -15,7 +15,8 @@ import android.widget.TextView;
  */
 public class DescriptionFragment extends Fragment {
     final static String ARG_POSITION = "position";
-    int currentPos = -1;
+    static int currentPos = -1;
+    protected static WebView webView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
@@ -40,7 +41,7 @@ public class DescriptionFragment extends Fragment {
     protected void updateBookView(int position) {
         TextView bookDesc = (TextView) getActivity().findViewById(R.id.desc_frag_id);
         ImageView cover = (ImageView) getActivity().findViewById(R.id.image);
-        WebView webView = (WebView) getActivity().findViewById(R.id.webView);
+        webView = (WebView) getActivity().findViewById(R.id.webView);
 
         //Ensure links clicked in webViewer are handled in webViewer not default browser activity
         webView.setWebViewClient(new WebViewClient());
@@ -49,6 +50,13 @@ public class DescriptionFragment extends Fragment {
         cover.setImageResource(Info.Images[position]);
         webView.loadUrl(Info.Links[position]);
         currentPos = position;
+    }
+
+    /**
+     * Reset webview from the action bar item
+     */
+    protected static void resetWebView() {
+        webView.loadUrl(Info.Links[currentPos]);
     }
 
     @Override
