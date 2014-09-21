@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+    <TextView android:name="com.BooksFragments.DescriptionFragment"
+              tools:layout="@layout/description_view"
+              android:id="@+id/desc_frag_id"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="50sp"
+              android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/imageViewFront"
+                    android:layout_below="@+id/desc_frag_id"
+                    android:padding="20dp">
+        <ImageView android:layout_width="250dp"
+                   android:layout_height="250dp"
+                   android:id="@+id/image"
+                   android:adjustViewBounds="true"
+                   android:scaleType="fitCenter"/>
+    </RelativeLayout>
+
+    <WebView android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:id="@+id/webView"
+             android:layout_below="@+id/imageViewFront"/>
+
+</RelativeLayout>

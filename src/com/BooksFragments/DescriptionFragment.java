@@ -2,10 +2,12 @@ package com.BooksFragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -21,7 +23,7 @@ public class DescriptionFragment extends Fragment {
         if (savedInstance != null) {
             currentPos = savedInstance.getInt(ARG_POSITION);
         }
-        return inflater.inflate(R.layout.books_frags, container, false);
+        return inflater.inflate(R.layout.descrip_frag, container, false);
     }
 
     @Override
@@ -37,7 +39,15 @@ public class DescriptionFragment extends Fragment {
 
     protected void updateBookView(int position) {
         TextView bookDesc = (TextView) getActivity().findViewById(R.id.desc_frag_id);
+        ImageView cover = (ImageView) getActivity().findViewById(R.id.image);
+        WebView webView = (WebView) getActivity().findViewById(R.id.webView);
+
+        //Ensure links clicked in webViewer are handled in webViewer not default browser activity
+        webView.setWebViewClient(new WebViewClient());
+
         bookDesc.setText(Info.Descriptions[position]);
+        cover.setImageResource(Info.Images[position]);
+        webView.loadUrl(Info.Links[position]);
         currentPos = position;
     }
 
